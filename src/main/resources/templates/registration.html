@@ -4,9 +4,9 @@
     <title id="pageTitle">Registration</title>
 </head>
 <body>
-    <form th:method="post" enctype="multipart/form-data">
+    <form th:action="@{/registration}" th:method="post" enctype="multipart/form-data">
         <p th:text="${error}"></p>
-        <label><input type="file" name="multipleAvatar" /></label>
+        <label><input type="file" th:name="avatar" /></label>
         <label> User Name : <input type="text" name="username"/> </label>
         <label> Password: <input type="password" name="password"/> </label>
         <input type="submit" class="btn btn-primary" value="Подтвердить"/>

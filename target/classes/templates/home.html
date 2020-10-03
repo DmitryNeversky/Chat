@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:insert="/join/page :: head">
+    <title id="pageTitle">Chat</title>
+</head>
+<body onbeforeunload="">
+	<div class="container">
+		<div class="row">
+			<section class="sidebar col-md-3">
+				<button onclick="openBar()" id="burger-button">|||</button>
+				<h2>ChatRoom</h2>
+				<div id="mobile-bar">
+					<ul class="meta">
+						<li><button><i class="fas fa-users"></i></button></li>
+	                    <li><button><i class="far fa-comments"></i></button></li>
+	                    <li><button><i class="far fa-address-book"></i></button></li>
+	                    <li><button><i class="far fa-newspaper"></i></button></li>
+					</ul>
+					<ul class="user-list">
+<!--						<a href="#">-->
+<!--							<li class="user">-->
+<!--								<img src="img/default.png" id="avatar" alt="avatar">-->
+<!--								<p id="name">~Alex~</p>-->
+<!--								<i class="fa fa-circle online" style="color: #86bb71"></i><span id="sometext">~online~</span>-->
+<!--							</li>-->
+<!--						</a>-->
+					</ul>
+				</div>
+			</section>
+			<section class="chat col-md-9">
+				<div class="chat-header">
+					<img src="img/default.png" id="avatar" alt="avatar" style="border: 3px solid #86bb71">
+					<button><i class="fa fa-star"></i></button>
+					<p id="name">~Alex~</p>
+					<span id="sometext">~Some string~</span>
+				</div>
+				<div class="chat-box">
+					<ul class="message-box">
+<!--						<li class="my-message" id="my-message">-->
+<!--							<div class="message-info">-->
+<!--								<img src="img/default.png" id="avatar" alt="avatar">-->
+<!--								<p id="name">~Alex~</p>-->
+<!--								<span id="sometext">~11:34~</span>-->
+<!--							</div>-->
+<!--							<div class="message">-->
+<!--								<p id="message">~Text~</p>-->
+<!--							</div>-->
+<!--						</li>-->
+<!--						<li class="other-message" id="other-message">-->
+<!--							<div class="message-info">-->
+<!--								<img src="img/default.png" id="avatar" alt="avatar">-->
+<!--								<p id="name">~Alex~</p>-->
+<!--								<span id="sometext">~11:34~</span>-->
+<!--							</div>-->
+<!--							<div class="message">-->
+<!--								<p id="message">~Text~</p>-->
+<!--							</div>-->
+<!--						</li>-->
+					</ul>
+				</div>
+				<div class="send-box">
+					<form id="send-form">
+                        <textarea type="text" id="message-content" placeholder ="Введите сообщение..."></textarea>
+                        <label for="partImages"><i class="fa fa-file-image-o"></i></label>
+                        <input type="file" id="partImages" accept="image/*" multiple />
+                        <label for="partFiles"><i class="fa fa-file-o"></i></label>
+                        <input type="file" id="partFiles" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document" multiple />
+                        <button type="submit">Отправить</button>
+                    </form>
+				</div>
+			</section>
+		</div>
+	</div>
+</body>
+</html>
