@@ -2,27 +2,21 @@ package com.chat.my.controllers;
 
 import com.chat.my.entities.User;
 import com.chat.my.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Value;
+import com.chat.my.services.FileService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.UUID;
-
 @Controller
 public class Auth {
 
-    @Value("${upload.path}")
-    private String uploadPath;
-
     private final UserRepository userRepository;
+    private final FileService fileService;
 
-    public Auth(UserRepository userRepository) {
+    public Auth(UserRepository userRepository, FileService fileService) {
         this.userRepository = userRepository;
+        this.fileService = fileService;
     }
 
     @PostMapping("/login")
@@ -31,23 +25,13 @@ public class Auth {
     }
 
     @PostMapping("/registration")
-    public void onRegistration(String username, String password, MultipartFile avatar, Model model){
+    public void onRegistration(String username, String password, @RequestParam("avatar") MultipartFile avatar, Model model){
         User findUser = userRepository.findByName(username);
 
         if(findUser == null){
             String avatarPath = "/static/img/default.png";
 
-            if (avatar.getSize() != 0) {
-                System.out.println(uploadPath);
-
-                avatarPath = uploadPath + "/" + UUID.randomUUID() + avatar.getOriginalFilename();
-
-                try {
-                    avatar.transferTo(new File(avatarPath));
-                } catch (IOException e){
-                    e.printStackTrace();
-                }
-            }
+            if (avatar.getSize() != 0) avatarPath = "uploads" + '/' + fileService.uploadFile(avatar);
 
             User user = new User(username, password, avatarPath);
             userRepository.save(user);
